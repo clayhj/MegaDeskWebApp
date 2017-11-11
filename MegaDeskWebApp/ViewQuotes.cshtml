@@ -1,16 +1,8 @@
 ﻿@{ 
-
-
-    var db = Database.OpenConnectionString("Data Source=|DataDirectory|\\MegaDeskQuotes.sdf", "System.Data.SqlServerCe.4.0"); ;
+   var db = Database.OpenConnectionString("Data Source=|DataDirectory|\\MegaDeskQuotes.sdf", "System.Data.SqlServerCe.4.0"); ;
     var selectCommand = "SELECT * FROM Quotes";
-
     var selectedData = db.Query(selectCommand);
     var grid = new WebGrid(source: selectedData, defaultSort: "QuoteDate", rowsPerPage: 5);
-
-
-
-
-
 }
 
 <!DOCTYPE html>
