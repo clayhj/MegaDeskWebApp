@@ -1,4 +1,5 @@
 ﻿@{
+
     Page.Title = "Add Quote";
     Layout = "~/_Layout.cshtml";
 
@@ -9,23 +10,12 @@
     Validation.RequireField("drawers", "You must enter a number of drawers!");
     Validation.RequireField("name", "You must enter a customer name!");
 
-    Desk desk = new Desk();
-    var width = "0";
-    var depth = "0";
+    var width = "";
+    var depth = "";
     var material = "";
-    var rush = "0";
-    var drawers = "0";
+    var rush = "";
+    var drawers = "";
     var name = "";
-
-    desk.Width = Int32.Parse(width);
-    desk.Depth = Int32.Parse(depth);
-    desk.DeskMaterial = material;
-    desk.Drawers = Int32.Parse(drawers);
-    DeskQuote deskQuote = new DeskQuote(desk);
-    desk.RushOrder = Int32.Parse(rush);
-    desk.Total = deskQuote.QuotePrice;
-
-    var total = desk.Total;
 
     if (IsPost && Validation.IsValid())
     {
@@ -37,8 +27,8 @@
         name = Request.Form["name"];
 
         var db = Database.OpenConnectionString("MegaDeskQuotes");
-        var insertCommand = "INSERT INTO Quotes (Width, Depth, Material, RushOrder, Drawers, CustomerName, Total) Values(@0, @1, @2, @3, @4, @5, @6)";
-        db.Execute(insertCommand, width, depth, material, rush, drawers, name, total);
+        var insertCommand = "INSERT INTO Quotes (Width, depth, material, rush, drawers, name) Values(@0, @1, @2, @3, @4, @5, @6)";
+        db.Execute(insertCommand, width, depth, material, rush, drawers, name);
         Response.Redirect("~/Success");
     }
 }
