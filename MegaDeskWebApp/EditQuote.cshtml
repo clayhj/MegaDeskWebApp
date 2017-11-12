@@ -1,6 +1,6 @@
 ﻿@{
 
-    Page.Title = "Delete Scripture";
+    Page.Title = "Edit Quote";
     Layout = "~/_Layout.cshtml";
 
     var customer = "";
@@ -20,8 +20,6 @@
     var veneerCheck = "";
     var pineCheck = "";
     decimal totalPrice = 0;
-
-
 
     if (!IsPost)
     {
@@ -102,7 +100,6 @@
         drawers = Request.Form["drawers"].AsInt();
         rush = Request.Form["rush"].AsInt();
         quoteId = Request.Form["quoteId"];
-
 
         if (Validation.IsValid())
         {

@@ -1,12 +1,11 @@
 ﻿@{
-    Page.Title = "Delete Scripture";
+    Page.Title = "View Quotes";
     Layout = "~/_Layout.cshtml";
 
     var db = Database.OpenConnectionString("Data Source=|DataDirectory|\\MegaDeskQuotes.sdf", "System.Data.SqlServerCe.4.0");
     var selectCommand = "SELECT * FROM Quotes";
 
     var searchCustomer = "";
-
 
     if (!Request.QueryString["searchCustomer"].IsEmpty())
     {
@@ -16,11 +15,6 @@
 
     var selectedData = db.Query(selectCommand, searchCustomer);
     var grid = new WebGrid(source: selectedData, defaultSort: "QuoteDate", rowsPerPage: 5);
-
-
-
-
-
 }
 
     <h2>Quotes</h2>
@@ -33,9 +27,7 @@
             <input type="Submit" value="Search Customer" /><br />
             (Leave blank to list all Quotes)<br />
         </div>
-
-
-    </form>
+ </form>
 
     <div class="grid">
         @grid.GetHtml(
